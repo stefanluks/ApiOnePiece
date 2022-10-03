@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block page_style %}
+{% endblock %}
+
+{% block page %}
+    <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">        
+        {% if edicao %}
+            <form action="{% url modelo obj.id %}" method="post" class="form-control my-4">
+        {% else %}
+            <form action="." method="post" class="form-control my-4">
+        {% endif %}
+            <h3 class="fs-2 text-center my-2">{{modelo}}</h3>
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <button type="submit" class="w-100 btn my-1 btn-primary">Submit</button>
+            <button type="cancel" class="w-100 btn my-1 btn-warning">Cancel</button>
+            <a href="{% url 'Home' %}" class="w-100 btn my-1 btn-danger">VOLTAR</a>
+        </form>
+    </div>
+{% endblock %}
+
+{% block page_script %}
+    <script>
+        let blocos = document.querySelectorAll("p");
+        let labels = document.querySelectorAll("label");
+        let inputs = document.querySelectorAll("input");
+        let selects = document.querySelectorAll("select");
+        let textareas = document.querySelectorAll("textarea");
+        blocos.forEach(p => { p.className = "mb-3"; });
+        labels.forEach( lb => { lb.classList.toggle("form-label"); lb.classList.toggle("fs-5"); });
+        inputs.forEach( i => { i.classList.toggle("form-control"); });
+        selects.forEach( s => { s.classList.toggle("form-control"); });
+        textareas.forEach( ta => { ta.classList.toggle("form-control"); });
+    </script>
+{% endblock %}

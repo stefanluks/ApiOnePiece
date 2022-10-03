@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block page_style %}
+<style>
+    *{
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+</style>
+{% endblock %}
+
+{% block page %}
+    <h2 class="w-100 fs-1 text-center text-light">Api de One piece</h2>
+    <div class="w-100 py-3 bg bg-light mx-0">
+        <div class="container mx-auto">
+            <p class="descricao mx-auto w-75 border border-dark text-justify p-2 rounded-2">
+                Este projeto é uma simples API rest de One Piece desenvolvida com <b>Django Rest Framework</b>
+                conta com uma estrutura bem rica em informações dos personagens, bandos, navios, lugares e muito mais.
+            </p>
+        </div>
+    </div>
+    <div class="container mx-auto">
+        <h3 class="fs-2 my-2">Listas</h3>
+    </div>
+    <div class="w-100 py-3 bg bg-light mx-0">
+        <div class="container mx-auto">
+            <p class="descricao mx-auto w-75 border border-dark text-justify p-2 rounded-2">
+                <a href="/api/personagens/" class="text-dark fs-6 text-center">api/personagens/</a>
+            </p>
+            <p class="descricao mx-auto w-75 border border-dark text-justify p-2 rounded-2">
+                <a href="/api/bandos/" class="text-dark fs-6 text-center">api/bandos/</a>
+            </p>
+            <p class="descricao mx-auto w-75 border border-dark text-justify p-2 rounded-2">
+                <a href="/api/navios/" class="text-dark fs-6 text-center">api/navios/</a>
+            </p>
+            <p class="descricao mx-auto w-75 border border-dark text-justify p-2 rounded-2">
+                <a href="/api/lugares/" class="text-dark fs-6 text-center">api/lugares/</a>
+            </p>
+            <p class="descricao mx-auto w-75 border border-dark text-justify p-2 rounded-2">
+                <a href="/api/capitulos/" class="text-dark fs-6 text-center">api/capitulos/</a>
+            </p>
+            <p class="descricao mx-auto w-75 border border-dark text-justify p-2 rounded-2">
+                <a href="/api/episodios/" class="text-dark fs-6 text-center">api/episodios/</a>
+            </p>
+            <p class="descricao mx-auto w-75 border border-dark text-justify p-2 rounded-2">
+                <a href="/api/aberturas/" class="text-dark fs-6 text-center">api/aberturas/</a>
+            </p>
+            <p class="descricao mx-auto w-75 border border-dark text-justify p-2 rounded-2">
+                <a href="/api/habilidades/" class="text-dark fs-6 text-center">api/habilidades/</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_script %}
+{% endblock %}

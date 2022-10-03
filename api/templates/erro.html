@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block page_style %}
+<style>
+    *{
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+</style>
+{% endblock %}
+
+{% block page %}
+    <h2 class="w-100 fs-1 text-center text-light">Api de One piece</h2>
+    <div class="w-100 py-3 bg bg-light mx-0">
+        <div class="container mx-auto">
+            <p class="descricao mx-auto w-75 border border-dark text-justify p-2 rounded-2">
+                Este projeto é uma simples API rest de One Piece desenvolvida com <b>Django Rest Framework</b>
+                conta com uma estrutura bem rica em informações dos personagens, bandos, navios, lugares e muito mais.
+            </p>
+        </div>
+    </div>
+    <div class="w-100 mx-auto text-center">
+        <div class="container bg bg-light">
+            <div class="container">
+                {% if msg_erro %}
+                    <div class="alert alert-danger">{{msg_erro}}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_script %}
+{% endblock %}

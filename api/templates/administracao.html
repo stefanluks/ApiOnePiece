@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+
+{% block page_style %}
+{% endblock %}
+
+{% block page %}
+    <div class="container bg bg-light rounded">
+        <div class="container">
+            <h3 class="w-100 text-center fs-2 py-2">ADMINISTRAÇÃO DA API</h3>
+        </div>
+        <div class="container my-2">
+            <div class="W-100 d-flex align-items-center justify-content-center btn-group">
+                <a page="listaPersonagens" class="btn btn-primary btnList active">PERSONAGENS</a>
+                <a page="listaBandos" class="btn btn-primary btnList">BANDOS</a>
+                <a page="listaNavios" class="btn btn-primary btnList">NAVIOS</a>
+                <a page="listaLugares" class="btn btn-primary btnList">LUGARES</a>
+                <a page="listaCapitulos" class="btn btn-primary btnList">CAPÍTULOS</a>
+                <a page="listaEpisodios" class="btn btn-primary btnList">EPISÓDIOS</a>
+                <a page="listaAberturas" class="btn btn-primary btnList">ABERTURAS</a>
+                <a page="listaHabilidades" class="btn btn-primary btnList">HABILIDADES</a>
+                {% if request.user.is_superuser %}
+                    <a href="/admin/api/" class="btn btn-primary btnList">ADMIN DJANGO</a>
+                {% endif %}
+            </div>
+
+            <!-- seção personagens -->
+            <div id="listaPersonagens" class="tela w-100 py-3 d-flex flex-column">
+                <h3 class="fs-2 p-2 my-2 text-dark border">
+                    Lista Personagens
+                    <a href="{% url 'Personagens' %}" class="btn btn-secondary link"><i class="bi bi-plus-circle-dotted"></i></a>
+                </h3>
+                {% for p in personagens %}
+                    <div class="w-100 d-flex align-items-center my-2 p-2 justify-content-center bg bg-opacity-50 bg-info">
+                        <div class="text-dark p-2 rounded-2 w-75 text-start">{{p.nome_portugues}} | {{p.UID}}</div>
+                        <div class="w-25  d-flex align-items-center justify-content-around">
+                            <a href="{% url 'Personagens' p.id %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-pencil-square"></i>
+                            </a>
+                            <a href="{% url 'Home' %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-eye-fill"></i>
+                            </a>
+                            {% if request.user.is_superuser %}
+                                <a href="{% url 'Home' %}" class="text-dark">
+                                    <i class="btn btn-danger bi bi-file-earmark-x-fill"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- seção bandos -->
+            <div id="listaBandos" class="tela w-100 py-3 d-none flex-column">
+                <h3 class="fs-2 p-2 my-2 text-dark border">
+                    Lista Bandos
+                    <a href="{% url 'Bandos' %}" class="btn btn-secondary link"><i class="bi bi-plus-circle-dotted"></i></a>
+                </h3>
+                {% for b in bandos %}
+                    <div class="w-100 d-flex align-items-center my-2 p-2 justify-content-center bg bg-opacity-50 bg-info">
+                        <div class="text-dark p-2 rounded-2 w-75 text-start">{{b.nome_portugues}} | {{b.UID}}</div>
+                        <div class="w-25  d-flex align-items-center justify-content-around">
+                            <a href="{% url 'Bandos' b.id %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-pencil-square"></i>
+                            </a>
+                            <a href="{% url 'Home' %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-eye-fill"></i>
+                            </a>
+                            {% if request.user.is_superuser %}
+                                <a href="{% url 'Home' %}" class="text-dark">
+                                    <i class="btn btn-danger bi bi-file-earmark-x-fill"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- seção navios -->
+            <div id="listaNavios" class="tela w-100 py-3 d-none flex-column">
+                <h3 class="fs-2 p-2 my-2 text-dark border">
+                    Lista Navios
+                    <a href="{% url 'Navios' %}" class="btn btn-secondary link"><i class="bi bi-plus-circle-dotted"></i></a>
+                </h3>
+                {% for n in navios %}
+                    <div class="w-100 d-flex align-items-center my-2 p-2 justify-content-center bg bg-opacity-50 bg-info">
+                        <div class="text-dark p-2 rounded-2 w-75 text-start">{{n.nome_portugues}} | {{n.UID}}</div>
+                        <div class="w-25  d-flex align-items-center justify-content-around">
+                            <a href="{% url 'Navios' n.id %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-pencil-square"></i>
+                            </a>
+                            <a href="{% url 'Home' %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-eye-fill"></i>
+                            </a>
+                            {% if request.user.is_superuser %}
+                                <a href="{% url 'Home' %}" class="text-dark">
+                                    <i class="btn btn-danger bi bi-file-earmark-x-fill"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- seção lugares -->
+            <div id="listaLugares" class="tela w-100 py-3 d-none flex-column">
+                <h3 class="fs-2 p-2 my-2 text-dark border">
+                    Lista Lugares
+                    <a href="{% url 'Lugares' %}" class="btn btn-secondary link"><i class="bi bi-plus-circle-dotted"></i></a>
+                </h3>
+                {% for l in lugares %}
+                    <div class="w-100 d-flex align-items-center my-2 p-2 justify-content-center bg bg-opacity-50 bg-info">
+                        <div class="text-dark p-2 rounded-2 w-75 text-start">{{l.nome_portugues}} | {{l.UID}}</div>
+                        <div class="w-25  d-flex align-items-center justify-content-around">
+                            <a href="{% url 'Lugares' l.id %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-pencil-square"></i>
+                            </a>
+                            <a href="{% url 'Home' %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-eye-fill"></i>
+                            </a>
+                            {% if request.user.is_superuser %}
+                                <a href="{% url 'Home' %}" class="text-dark">
+                                    <i class="btn btn-danger bi bi-file-earmark-x-fill"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- seção capitulos -->
+            <div id="listaCapitulos" class="tela w-100 py-3 d-none flex-column">
+                <h3 class="fs-2 p-2 my-2 text-dark border">
+                    Lista Capítulos
+                    <a href="{% url 'Capitulos' %}" class="btn btn-secondary link"><i class="bi bi-plus-circle-dotted"></i></a>
+                </h3>
+                {% for c in capitulos %}
+                    <div class="w-100 d-flex align-items-center my-2 p-2 justify-content-center bg bg-opacity-50 bg-info">
+                        <div class="text-dark p-2 rounded-2 w-75 text-start">{{c.nome_portugues}} | {{c.UID}}</div>
+                        <div class="w-25  d-flex align-items-center justify-content-around">
+                            <a href="{% url 'Capitulos' c.id %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-pencil-square"></i>
+                            </a>
+                            <a href="{% url 'Home' %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-eye-fill"></i>
+                            </a>
+                            {% if request.user.is_superuser %}
+                                <a href="{% url 'Home' %}" class="text-dark">
+                                    <i class="btn btn-danger bi bi-file-earmark-x-fill"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- seção episodios -->
+            <div id="listaEpisodios" class="tela w-100 py-3 d-none flex-column">
+                <h3 class="fs-2 p-2 my-2 text-dark border">
+                    Lista Episódios
+                    <a href="{% url 'Episodios' %}" class="btn btn-secondary link"><i class="bi bi-plus-circle-dotted"></i></a>
+                </h3>
+                {% for e in episodios %}
+                    <div class="w-100 d-flex align-items-center my-2 p-2 justify-content-center bg bg-opacity-50 bg-info">
+                        <div class="text-dark p-2 rounded-2 w-75 text-start">{{e.nome_portugues}} | {{e.UID}}</div>
+                        <div class="w-25  d-flex align-items-center justify-content-around">
+                            <a href="{% url 'Episodios' e.id %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-pencil-square"></i>
+                            </a>
+                            <a href="{% url 'Home' %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-eye-fill"></i>
+                            </a>
+                            {% if request.user.is_superuser %}
+                                <a href="{% url 'Home' %}" class="text-dark">
+                                    <i class="btn btn-danger bi bi-file-earmark-x-fill"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- seção aberturas -->
+            <div id="listaAberturas" class="tela w-100 py-3 d-none flex-column">
+                <h3 class="fs-2 p-2 my-2 text-dark border">
+                    Lista Aberturas
+                    <a href="{% url 'Aberturas' %}" class="btn btn-secondary link"><i class="bi bi-plus-circle-dotted"></i></a>
+                </h3>
+                {% for a in aberturas %}
+                    <div class="w-100 d-flex align-items-center my-2 p-2 justify-content-center bg bg-opacity-50 bg-info">
+                        <div class="text-dark p-2 rounded-2 w-75 text-start">{{a.nome_portugues}} | {{a.UID}}</div>
+                        <div class="w-25  d-flex align-items-center justify-content-around">
+                            <a href="{% url 'Aberturas' a.id %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-pencil-square"></i>
+                            </a>
+                            <a href="{% url 'Home' %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-eye-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- seção habilidades -->
+            <div id="listaHabilidades" class="tela w-100 py-3 d-none flex-column">
+                <h3 class="fs-2 p-2 my-2 text-dark border">
+                    Lista Habilidades
+                    <a href="{% url 'Habilidades' %}" class="btn btn-secondary link"><i class="bi bi-plus-circle-dotted"></i></a>
+                </h3>
+                {% for h in habilidades %}
+                    <div class="w-100 d-flex align-items-center my-2 p-2 justify-content-center bg bg-opacity-50 bg-info">
+                        <div class="text-dark p-2 rounded-2 w-75 text-start">{{h.nome_portugues}} | {{h.UID}}</div>
+                        <div class="w-25  d-flex align-items-center justify-content-around">
+                            <a href="{% url 'Habilidades' h.id %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-pencil-square"></i>
+                            </a>
+                            <a href="{% url 'Home' %}" class="text-dark">
+                                <i class="btn btn-secondary bi bi-eye-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_script %}
+    <script>
+        let btns = document.querySelectorAll(".btnList");
+        btns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                btns.forEach(b => { b.classList.remove("active"); });
+                btn.classList.toggle("active");
+                document.querySelectorAll(".tela").forEach(tela => {
+                    tela.className = "tela w-100 py-3 d-none flex-column";
+                });
+                let id = btn.getAttribute("page");
+                let page = document.querySelector("#"+id);
+                page.classList.remove("d-none");
+                page.classList.toggle("d-flex");
+            });
+        });
+
+
+    </script>
+{% endblock %}
