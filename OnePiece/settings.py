@@ -3,8 +3,11 @@ from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-3ge8sw)rpxg&4jju)uxr)1wh^118c+^x176!=84$gyvcw#bzp('
-DEBUG = True
+
+INFOS = open("config.txt","r").read().split("\n")
+
+SECRET_KEY = INFOS[0]
+DEBUG = INFOS[1]
 ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
