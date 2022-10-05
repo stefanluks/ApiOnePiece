@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block page_style %}
+<style>    
+    .topo {
+        margin-top: 70px;
+    }
+    
+    img {
+        display: block;
+        height: 100% !important;
+        object-fit: cover;
+    }
+    
+    .card {
+        box-shadow: 0 0 10px gray;
+        transition: .7s;
+        cursor: pointer;
+    }
+    
+    .card:hover {
+        box-shadow: 0 0 20px black;
+    }
+    .link:hover{
+        cursor: pointer;
+        background-color: #0dcaf0;
+        padding: 4px 6px;
+        margin: 3px 0px;
+        border-radius: 10px;
+        color: white !important;
+    }
+    .text-justify{
+        text-align: justify;
+    }
+</style>
+{% endblock %}
+
+{% block page %}
+<div class="container-fluid bg bg-dark topo">
+    <h2 class="title fs-3 text-light text-center py-5">Sobre nós</h2>
+</div>
+<div class="container my-5 py-3">
+    <h4 class="fs-3 text-info">O que é este projeto? </h4>
+    <p class="mx-auto w-75 px-0 fs-4 text-justify text-dark">
+        Este projeto é uma API REST de One Piece construida com Django Rest Framework. Usando o sistema você tem acesso as informações dos milhares de personagens existentes e catalogados na obra.
+        <br>
+        <a class="link px-1 my-1 text-info text-decoration-none" href="{% url 'Documentos' %}">Comece lendo a Documentação</a>
+    </p>
+</div>
+<div class="container my-5 py-3">
+    <h4 class="fs-3 text-info">Quem somos nós?</h4>
+    <p class="mx-auto w-75 px-0 fs-4 text-justify text-dark">
+        Sou <a href="https://github.com/stefanluks" class="link text-info text-decoration-none">Stefan Lucas</a>, um programador apaixonado por One Piece.
+    </p>
+</div>
+<div class="container my-5 py-3">
+    <h4 class="fs-3 text-info">Por quê construir isso?</h4>
+    <p class="mx-auto w-75 px-0 fs-4 text-justify text-dark">
+        Durante a graduação sempre que aparecia atividade de implemtação que necessitava de fazer uso de alguma API eu ficava me perguntando por quê não existia uma de One Piece.
+        O anime é muito rico em informações e com um universo tão grande, seria uma otima base de informações e bem grande.
+    </p>
+</div>
+<div class="container my-5 py-3">
+    <h4 class="fs-3 text-info">Informações Técnicas?</h4>
+    <p class="mx-auto w-75 px-0 fs-4 text-justify text-dark">
+        Durante a graduação sempre que aparecia atividade de implemtação que necessitava de fazer uso de alguma API eu ficava me perguntando por quê não existia uma de One Piece.
+        O anime é muito rico em informações e com um universo tão grande, seria uma otima base de informações e bem grande.
+    </p>
+</div>
+<div class="container my-5 py-3">
+    <h4 class="fs-3 text-info">Direitos Autorais</h4>
+    <p class="mx-auto w-75 px-0 fs-4 text-justify text-dark">
+        <b>One Piece</b> é uma obra de Eiichiro Oda e todos dados e imagens são usados ​​sem reivindicação de propriedade e pertencem aos seus respectivos proprietários.
+    </p>
+</div>
+<div class="container-fluid bg bg-dark text-center py-5">
+    <h2 class="title fs-6 text-light text-center py-2">Servidor: Online <i class="text-success bi bi-diamond-fill"></i></h2>
+    <div class="w-100 d-flex align-items-center justify-content-center">
+        <div class="w-25 p-2 rounded text-center my-2">
+            <a href="https://github.com/stefanluks" class="btn btn-light bi bi-github my-2"></a>
+            <a href="https://instagram.com/stefan.luks" class="btn btn-light bi bi-instagram"></a>
+        </div>
+    </div>
+    <div class="w-100 text-center">
+        <a href="https://github.com/stefanluks" class="w-25 btn btn-light title text-center py-2">
+            <i class="bi bi-file-earmark-code"> by </i> Stefan Lucas <b>2022</b>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block page_script %}
+{% endblock %}

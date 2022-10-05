@@ -8,13 +8,21 @@ from .series import PersonagemSerializer, BandoSerializer, NavioSerializer, Luga
 
 def Home(request):
     return render(request, "home.html", {
-        "personagens":list(Personagem.objects.all()),
+        "topPersonagens":list(Personagem.objects.all())[:9],
     })
+
+
+def Sobre(request):
+    return render(request, "sobre.html", {})
+
+
+def Documentos(request):
+    return render(request, "documentos.html", {})
 
 
 def Administracao(request):
     if request.user.is_staff:
-        return render(request, "administracao.html", {
+        return render(request, "administracao/administracao.html", {
             "personagens":list(Personagem.objects.all()),
             "bandos":list(Bando.objects.all()),
             "navios":list(Navio.objects.all()),
@@ -34,11 +42,12 @@ def Bandos(request, id=None):
     if request.method == "GET":
         form = BandoForm()
         edicao = False
+        bando = None
         if id and Bando.objects.filter(pk=id):
             edicao = True
             bando = Bando.objects.get(pk=id)
             form = BandoForm(instance=bando)
-        return render(request, 'admin.html', { "form":form, "modelo":"Bandos", "edicao":edicao, "obj":bando})
+        return render(request, 'administracao/admin.html', { "form":form, "modelo":"Bandos", "edicao":edicao, "obj":bando})
     elif request.method == "POST":
         resposta = BandoForm(request.POST)
         if id and Bando.objects.filter(pk=id):
@@ -46,7 +55,7 @@ def Bandos(request, id=None):
             resposta = BandoForm(request.POST, instance=bando)
         if resposta.is_valid:
             resposta.save()
-            return redirect("Home")
+            return redirect("Administracao")
         return render(request, 'erro.html', {
             "msg_erro":"Formulario invalído!"
         })
@@ -60,11 +69,12 @@ def Personagens(request, id=None):
     if request.method == "GET":
         form = PersonagemForm()
         edicao = False
+        personagem = None
         if id and Personagem.objects.filter(pk=id):
             edicao = True
             personagem = Personagem.objects.get(pk=id)
             form = PersonagemForm(instance=personagem)
-        return render(request, 'admin.html', { "form":form, "modelo":"Personagens" , "edicao":edicao, "obj":personagem })
+        return render(request, 'administracao/admin.html', { "form":form, "modelo":"Personagens" , "edicao":edicao, "obj":personagem })
     elif request.method == "POST":
         resposta = PersonagemForm(request.POST)
         if id and Personagem.objects.filter(pk=id):
@@ -72,7 +82,7 @@ def Personagens(request, id=None):
             resposta = PersonagemForm(request.POST, instance=personagem)
         if resposta.is_valid:
             resposta.save()
-            return redirect("Home")
+            return redirect("Administracao")
         return render(request, 'erro.html', {
             "msg_erro":"Formulario invalído!"
         })
@@ -86,11 +96,12 @@ def Navios(request, id=None):
     if request.method == "GET":
         form = NavioForm()
         edicao = False
+        navio = None
         if id and Navio.objects.filter(pk=id):
             edicao = True
             navio = Navio.objects.get(pk=id)
             form = NavioForm(instance=navio)
-        return render(request, 'admin.html', { "form":form, "modelo":"Navios", "edicao":edicao, "obj":navio  })
+        return render(request, 'administracao/admin.html', { "form":form, "modelo":"Navios", "edicao":edicao, "obj":navio  })
     elif request.method == "POST":
         resposta = NavioForm(request.POST)
         if id and Navio.objects.filter(pk=id):
@@ -98,7 +109,7 @@ def Navios(request, id=None):
             resposta = NavioForm(request.POST, instance=navio)
         if resposta.is_valid:
             resposta.save()
-            return redirect("Home")
+            return redirect("Administracao")
         return render(request, 'erro.html', {
             "msg_erro":"Formulario invalído!"
         })
@@ -112,11 +123,12 @@ def Lugares(request, id=None):
     if request.method == "GET":
         form = LugarForm()
         edicao = False
+        lugar = None
         if id and Lugar.objects.filter(pk=id):
             edicao = True
             lugar = Lugar.objects.get(pk=id)
             form = LugarForm(instance=lugar)
-        return render(request, 'admin.html', { "form":form, "modelo":"Lugares", "edicao":edicao, "obj":lugar  })
+        return render(request, 'administracao/admin.html', { "form":form, "modelo":"Lugares", "edicao":edicao, "obj":lugar  })
     elif request.method == "POST":
         resposta = LugarForm(request.POST)
         if id and Lugar.objects.filter(pk=id):
@@ -124,7 +136,7 @@ def Lugares(request, id=None):
             resposta = LugarForm(request.POST, instance=lugar)
         if resposta.is_valid:
             resposta.save()
-            return redirect("Home")
+            return redirect("Administracao")
         return render(request, 'erro.html', {
             "msg_erro":"Formulario invalído!"
         })
@@ -138,11 +150,12 @@ def Capitulos(request, id=None):
     if request.method == "GET":
         form = CapituloForm()
         edicao = False
+        capitulo = None
         if id and Capitulo.objects.filter(pk=id):
             edicao = True
             capitulo = Capitulo.objects.get(pk=id)
             form = CapituloForm(instance=capitulo)
-        return render(request, 'admin.html', { "form":form, "modelo":"Capitulos", "edicao":edicao, "obj":capitulo  })
+        return render(request, 'administracao/admin.html', { "form":form, "modelo":"Capitulos", "edicao":edicao, "obj":capitulo  })
     elif request.method == "POST":
         resposta = CapituloForm(request.POST)
         if id and Capitulo.objects.filter(pk=id):
@@ -150,7 +163,7 @@ def Capitulos(request, id=None):
             resposta = CapituloForm(request.POST, instance=capitulo)
         if resposta.is_valid:
             resposta.save()
-            return redirect("Home")
+            return redirect("Administracao")
         return render(request, 'erro.html', {
             "msg_erro":"Formulario invalído!"
         })
@@ -164,11 +177,12 @@ def Episodios(request, id=None):
     if request.method == "GET":
         form = EpisodioForm()
         edicao = False
+        episodio = None
         if id and Episodio.objects.filter(pk=id):
             edicao = True
             episodio = Episodio.objects.get(pk=id)
             form = EpisodioForm(instance=episodio)
-        return render(request, 'admin.html', { "form":form, "modelo":"Episodios", "edicao":edicao, "obj":episodio  })
+        return render(request, 'administracao/admin.html', { "form":form, "modelo":"Episodios", "edicao":edicao, "obj":episodio  })
     elif request.method == "POST":
         resposta = EpisodioForm(request.POST)
         if id and Episodio.objects.filter(pk=id):
@@ -176,7 +190,7 @@ def Episodios(request, id=None):
             resposta = EpisodioForm(request.POST, instance=episodio)
         if resposta.is_valid:
             resposta.save()
-            return redirect("Home")
+            return redirect("Administracao")
         return render(request, 'erro.html', {
             "msg_erro":"Formulario invalído!"
         })
@@ -190,11 +204,12 @@ def Aberturas(request, id=None):
     if request.method == "GET":
         form = AberturaForm()
         edicao = False
+        abertura = None
         if id and Abertura.objects.filter(pk=id):
             edicao = True
             abertura = Abertura.objects.get(pk=id)
             form = AberturaForm(instance=abertura)
-        return render(request, 'admin.html', { "form":form, "modelo":"Aberturas", "edicao":edicao, "obj":abertura })
+        return render(request, 'administracao/admin.html', { "form":form, "modelo":"Aberturas", "edicao":edicao, "obj":abertura })
     elif request.method == "POST":
         resposta = AberturaForm(request.POST)
         if id and Abertura.objects.filter(pk=id):
@@ -202,7 +217,7 @@ def Aberturas(request, id=None):
             resposta = AberturaForm(request.POST, instance = abertura)
         if resposta.is_valid:
             resposta.save()
-            return redirect("Home")
+            return redirect("Administracao")
         return render(request, 'erro.html', {
             "msg_erro":"Formulario invalído!"
         })
@@ -216,11 +231,12 @@ def Habilidades(request, id=None):
     if request.method == "GET":
         form = HabilidadeForm()
         edicao = False
+        habilidade = None
         if id and Habilidade.objects.filter(pk=id):
             edicao = True
             habilidade = Habilidade.objects.get(pk=id)
             form = HabilidadeForm(instance=habilidade)
-        return render(request, 'admin.html', { "form":form, "modelo":"Habilidades", "edicao":edicao, "obj":habilidade  })
+        return render(request, 'administracao/admin.html', { "form":form, "modelo":"Habilidades", "edicao":edicao, "obj":habilidade  })
     elif request.method == "POST":
         resposta = HabilidadeForm(request.POST)
         if id and Habilidade.objects.filter(pk=id):
@@ -228,7 +244,7 @@ def Habilidades(request, id=None):
             resposta = HabilidadeForm(request.POST, instance=habilidade)
         if resposta.is_valid:
             resposta.save()
-            return redirect("Home")
+            return redirect("Administracao")
         return render(request, 'erro.html', {
             "msg_erro":"Formulario invalído!"
         })

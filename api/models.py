@@ -44,6 +44,12 @@ class Personagem(Base):
         verbose_name = "PERSONAGEM"
         verbose_name_plural = "PERSONAGENS"
 
+    def GetStatus(self):
+        estado = "MORTO"
+        if self.status == "0":
+            estado = "VIVO"
+        return estado
+
 
 class Bando(Base):
     jolly_roger = models.CharField("JOlly Roger (bandeira)",max_length=2500,blank=True, null=True)

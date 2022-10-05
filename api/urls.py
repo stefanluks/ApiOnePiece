@@ -1,11 +1,14 @@
-from django.contrib import admin
 from django.urls import path
-from .views import Home, Api, Personagens, Bandos, Navios, Aberturas, Lugares, Habilidades, Capitulos, Episodios, Administracao
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import Home, Sobre, Documentos, Api, Personagens, Bandos, Navios, Aberturas, Lugares, Habilidades, Capitulos, Episodios, Administracao
 
 urlpatterns = [
     path('', Home, name="Home"),
     
     path('Administracao/', Administracao, name="Administracao"),
+    path('Sobre/', Sobre, name="Sobre"),
+    path('Documentos/', Documentos, name="Documentos"),
 
     path('api/', Api, name="Api"),
 
@@ -32,4 +35,4 @@ urlpatterns = [
 
     path('Habilidades/', Habilidades, name="Habilidades"),
     path('Habilidades/<int:id>', Habilidades, name="Habilidades"),
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

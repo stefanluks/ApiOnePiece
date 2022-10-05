@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+
+{% block page_style %}
+    <style>
+        img.logo {
+            width: 150px;
+        }
+        
+        .topo {
+            margin-top: 70px;
+        }
+        
+        img {
+            display: block;
+            height: 100% !important;
+            object-fit: cover;
+        }
+        
+        .card {
+            box-shadow: 0 0 10px gray;
+            transition: .7s;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            box-shadow: 0 0 20px black;
+        }
+        
+        .lista {
+            z-index: 2;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 20%;
+            height: 100vh;
+            background-color: cornflowerblue;
+            overflow-y: auto;
+        }
+        
+        .bloco:nth-child(1) {
+            margin-top: 100px;
+        }
+        
+        .bloco {
+            margin: 0 auto;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            width: 90%;
+        }
+        
+        .bloco h4 {
+            font-size: 18px;
+            font-weight: 300;
+            color: rgb(196, 196, 196) !important;
+        }
+        
+        .bloco .title {
+            color: white !important;
+            font-weight: bold;
+            font-size: 30px;
+            text-decoration: none;
+        }
+        
+        section {
+            top: 0px;
+            right: 0px;
+            width: 100%;
+            min-height: 100vh;
+            background-color: rgb(207, 207, 207);
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+        }
+        
+        .intro {
+            padding-bottom: 5px;
+            border-bottom: 1px solid black;
+        }
+        
+        .corpo {
+            width: 75%;
+            margin-top: 100px;
+            height: 100%;
+            padding: 5px 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block page %}
+<div class="lista bg bg-dark">
+    <div class="bloco">
+        <a href="#introducao" class="title text-dark my-1">Introdução</a>
+        <h4 class="">REST</h4>
+        <h4 class="">Mais informações</h4>
+    </div>
+    <div class="bloco">
+        <a href="#personagem" class="title my-1">Personagens</a>
+        <h4 class="">Classe Personagem</h4>
+        <h4 class=""><b>GET:</b> todos personagens</h4>
+        <h4 class=""><b>GET:</b> Personagem especifico</h4>
+    </div>
+    <div class="bloco">
+        <a href="#bando" class="title my-1">Bandos</a>
+        <h4 class="">Classe Personagem</h4>
+        <h4 class=""><b>GET:</b> todos personagens</h4>
+        <h4 class=""><b>GET:</b> Personagem especifico</h4>
+    </div>
+    <div class="bloco">
+        <a href="#navio" class="title my-1">Navios</a>
+        <h4 class="">Classe Navio</h4>
+        <h4 class=""><b>GET:</b> todos navios</h4>
+        <h4 class=""><b>GET:</b> navio especifico</h4>
+    </div>
+    <div class="bloco">
+        <a href="#lugar" class="title my-1">Lugares</a>
+        <h4 class="">Classe Lugar</h4>
+        <h4 class=""><b>GET:</b> todos lugares</h4>
+        <h4 class=""><b>GET:</b> lugar especifico</h4>
+    </div>
+    <div class="bloco">
+        <a href="#capitulo" class="title my-1">Capitulos</a>
+        <h4 class="">Classe Capitulo</h4>
+        <h4 class=""><b>GET:</b> todos capitulos</h4>
+        <h4 class=""><b>GET:</b> capitulo especifico</h4>
+    </div>
+    <div class="bloco">
+        <a href="#episodio" class="title my-1">Episodios</a>
+        <h4 class="">Classe Episodio</h4>
+        <h4 class=""><b>GET:</b> todos episodios</h4>
+        <h4 class=""><b>GET:</b> episodio especifico</h4>
+    </div>
+    <div class="bloco">
+        <a href="#habilidade" class="title my-1">Habilidades</a>
+        <h4 class="">Classe Habilidade</h4>
+        <h4 class=""><b>GET:</b> todos habilidades</h4>
+        <h4 class=""><b>GET:</b> habilidade especifica</h4>
+    </div>
+</div>
+<section id="introducao">
+    <div class="corpo ">
+        <h3 class="intro fs-2 text-dark">Documentação</h3>
+        <h3 class="fs-2 text-dark my-4">Introdução</h3>
+        <div class="bloco my-3 border border-dark py-2 px-3 rounded">
+            <h3 class="fs-2 text-dark ">REST</h3>
+            <p class="text-justify">
+                <b>Base url: </b>
+                <a class="text-primary text-decoration-none" href="">https://onepieceapi.com/api/</a>
+                <br> Está url base contém a lista dos objetos disponíveis da API. Todas as requesições são
+                <b class="text-primary">GET</b> e retornam os dados em formato
+                <b class="text-primary">JSON</b>.
+            </p>
+        </div>
+        <h4>Existe 7 (sete) tipos de objetos: </h4>
+        <ul class="m-0">
+            <li><a class="text-primary text-decoration-none" href="#personagem">Personagem</a></li>
+            <li><a class="text-primary text-decoration-none" href="#bando">Bando</a></li>
+            <li><a class="text-primary text-decoration-none" href="#navio">Navio</a></li>
+            <li><a class="text-primary text-decoration-none" href="#lugar">Lugar</a></li>
+            <li><a class="text-primary text-decoration-none" href="#capitulo">Capítulo</a></li>
+            <li><a class="text-primary text-decoration-none" href="#episodio">Episódio</a></li>
+            <li><a class="text-primary text-decoration-none" href="#habilidade">Habilidade</a></li>
+        </ul>
+    </div>
+</section>
+<section id="personagem">
+    <div class="corpo ">
+        <h3 class="intro fs-2 text-dark">Personagens</h3>
+        <div class="bloco my-3 border border-dark py-2 px-3 rounded">
+            <h3 class="fs-2 text-dark ">GET</h3>
+            <p class="text-justify">
+                <b>Url: </b>
+                <a class="text-primary text-decoration-none" href="">https://onepieceapi.com/api/personagens/</a>
+            </p>
+        </div>
+    </div>
+</section>
+<section id="bando">
+    <div class="corpo ">
+        <h3 class="intro fs-2 text-dark">Bandos</h3>
+        <div class="bloco my-3 border border-dark py-2 px-3 rounded">
+            <h3 class="fs-2 text-dark ">GET</h3>
+            <p class="text-justify">
+                <b>Url: </b>
+                <a class="text-primary text-decoration-none" href="">https://onepieceapi.com/api/bandos/</a>
+            </p>
+        </div>
+    </div>
+</section>
+<section id="navio">
+    <div class="corpo ">
+        <h3 class="intro fs-2 text-dark">Navios</h3>
+        <div class="bloco my-3 border border-dark py-2 px-3 rounded">
+            <h3 class="fs-2 text-dark ">GET</h3>
+            <p class="text-justify">
+                <b>Url: </b>
+                <a class="text-primary text-decoration-none" href="">https://onepieceapi.com/api/navios/</a>
+            </p>
+        </div>
+    </div>
+</section>
+<section id="lugar">
+    <div class="corpo ">
+        <h3 class="intro fs-2 text-dark">Lugares</h3>
+        <div class="bloco my-3 border border-dark py-2 px-3 rounded">
+            <h3 class="fs-2 text-dark ">GET</h3>
+            <p class="text-justify">
+                <b>Url: </b>
+                <a class="text-primary text-decoration-none" href="">https://onepieceapi.com/api/lugares/</a>
+            </p>
+        </div>
+    </div>
+</section>
+<section id="capitulo">
+    <div class="corpo ">
+        <h3 class="intro fs-2 text-dark">Capítulos</h3>
+        <div class="bloco my-3 border border-dark py-2 px-3 rounded">
+            <h3 class="fs-2 text-dark ">GET</h3>
+            <p class="text-justify">
+                <b>Url: </b>
+                <a class="text-primary text-decoration-none" href="">https://onepieceapi.com/api/capitulos/</a>
+            </p>
+        </div>
+    </div>
+</section>
+<section id="episodio">
+    <div class="corpo ">
+        <h3 class="intro fs-2 text-dark">Episódios</h3>
+        <div class="bloco my-3 border border-dark py-2 px-3 rounded">
+            <h3 class="fs-2 text-dark ">GET</h3>
+            <p class="text-justify">
+                <b>Url: </b>
+                <a class="text-primary text-decoration-none" href="">https://onepieceapi.com/api/episodios/</a>
+            </p>
+        </div>
+    </div>
+</section>
+<section id="habilidade">
+    <div class="corpo ">
+        <h3 class="intro fs-2 text-dark">Habilidades</h3>
+        <div class="bloco my-3 border border-dark py-2 px-3 rounded">
+            <h3 class="fs-2 text-dark ">GET</h3>
+            <p class="text-justify">
+                <b>Url: </b>
+                <a class="text-primary text-decoration-none" href="">https://onepieceapi.com/api/habilidades/</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block page_script %}
+{% endblock %}

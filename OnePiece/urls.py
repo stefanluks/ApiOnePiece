@@ -1,9 +1,13 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from api.views import GetPersonagens, GetBandos, GetNavios, GetLugares, GetCapitulos, GetEpisodios, GetAberturas, GetHabilidades
 from api.views import GetPersonagens_detail, GetBandos_detail, GetNavios_detail, GetLugares_detail, GetCapitulos_detail, GetEpisodios_detail, GetAberturas_detail, GetHabilidades_detail
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('u/',include('django.contrib.auth.urls')),
     path('', include("api.urls")),
     
     path('api/personagens/', GetPersonagens),
@@ -29,6 +33,4 @@ urlpatterns = [
     
     path('api/habilidades/', GetHabilidades),
     path('api/habilidades/<str:uid>', GetHabilidades_detail),
-    
-    path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

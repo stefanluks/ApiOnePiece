@@ -1,49 +1,65 @@
 {% extends 'base.html' %}
 
 {% block page_style %}
-<style>
-    *{
-        padding: 0 !important;
-        margin: 0 !important;
+<style>    
+    .topo {
+        margin-top: 70px;
+    }
+    
+    img {
+        display: block;
+        height: 100% !important;
+        object-fit: cover;
+    }
+    
+    .card {
+        box-shadow: 0 0 10px gray;
+        transition: .7s;
+        cursor: pointer;
+    }
+    
+    .card:hover {
+        box-shadow: 0 0 20px black;
     }
 </style>
 {% endblock %}
 
 {% block page %}
-    <h2 class="w-100 fs-1 text-center text-light">Api de One piece</h2>
-    <div class="w-100 py-3 bg bg-light mx-0">
-        <div class="container mx-auto">
-            <p class="descricao mx-auto w-75 border border-dark text-justify p-2 rounded-2">
-                Este projeto é uma simples API rest de One Piece desenvolvida com <b>Django Rest Framework</b>
-                conta com uma estrutura bem rica em informações dos personagens, bandos, navios, lugares e muito mais.
-            </p>
-        </div>
+    <div class="container-fluid bg bg-dark topo">
+        <h2 class="title fs-3 text-light text-center py-5">Api One Piece</h2>
     </div>
-    <div class="w-100 mx-auto text-center">
-        <div class="row">
-          <div class="col bg bg-light d-flex flex-column align-content-center justify-content-center">
-            {% if request.user.is_staff %}
-                <a href="{% url 'Administracao' %}" class="text-dark item-link w-100 my-3 border py-2">Adminstração</a>
-            {% endif %}
-            <a href="/api/" class="text-dark item-link w-100 my-3 border py-2">API</a>
-            <div class="item-link w-100 my-3 border py-2">Personagens</div>
-            <div class="item-link w-100 my-3 border py-2">Bandos</div>
-            <div class="item-link w-100 my-3 border py-2">Lugares</div>
-            <div class="item-link w-100 my-3 border py-2">Capitulos</div>
-            <div class="item-link w-100 my-3 border py-2">Episodios</div>
-            <div class="item-link w-100 my-3 border py-2">Aberturas</div>
-            <div class="item-link w-100 my-3 border py-2">Habilidades</div>
-          </div>
-          <div class="col-10 bg bg-opacity-50 bg-light">
-            <div class="container my-2 w-50 mx-auto">
-                <div class="alert alert-light py-2">
-                    <b>GET personagens:</b>
-                    <div class="w-75 mx-auto alert alert-info">
-                        apionepiece/api/personagens/{nome-do-personagem}
+    <div class="container-fluid flex-wrap my-5 d-flex align-items-center justify-content-center">
+        {% for p in topPersonagens %}
+            <div class="card my-2 mx-2" style="width: 300px; height: 200px;">
+                <div class="row g-0 h-100">
+                    <div class="col-md-4 h-100">
+                        <img src="{{p.aparencia_pos_timeskip}}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title fs-5">{{ p.nome_portugues }}</h5>
+                            <p class="card-text my-1">
+                                {{p.nome_japones}} <br> <b> {{ p.alcunha}} </b> <br> ฿ {{ p.recompensa }}
+                            </p>
+                            <p class="my-0 p-0"><small class="text-muted">Status: {{ p.GetStatus }} <i class="text-success bi bi-diamond-fill"></i> </small></p>
+                        </div>
                     </div>
                 </div>
             </div>
-          </div>
+        {% endfor %}
+    </div>
+    <div class="container-fluid bg bg-dark text-center py-5">
+        <h2 class="title fs-6 text-light text-center py-2">Servidor: Online <i class="text-success bi bi-diamond-fill"></i></h2>
+        <div class="w-100 d-flex align-items-center justify-content-center">
+            <div class="w-25 p-2 rounded text-center my-2">
+                <a href="https://github.com/stefanluks" class="btn btn-light bi bi-github my-2"></a>
+                <a href="https://instagram.com/stefan.luks" class="btn btn-light bi bi-instagram"></a>
+            </div>
+        </div>
+        <div class="w-100 text-center">
+            <a href="https://github.com/stefanluks" class="w-25 btn btn-light title text-center py-2">
+                <i class="bi bi-file-earmark-code"> by </i> Stefan Lucas <b>2022</b>
+            </a>
         </div>
     </div>
 {% endblock %}
